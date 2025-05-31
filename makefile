@@ -1,7 +1,7 @@
 -include .env
 
 install:
-	python -m pip install poetry
+	python -m pip install poetry coverage
 	poetry config virtualenvs.create true
 	poetry install --no-root
 
@@ -12,3 +12,7 @@ run:
 
 tests:
 	poetry run python -m unittest
+
+coverage:
+	poetry run coverage run -m unittest
+	poetry run coverage report
