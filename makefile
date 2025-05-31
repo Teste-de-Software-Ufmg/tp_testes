@@ -13,6 +13,6 @@ run:
 tests:
 	poetry run python -m unittest
 
-coverage:
+cover:
 	poetry run coverage run -m unittest
 	poetry run coverage report
