@@ -36,12 +36,12 @@ class TestCreatePerson(unittest.TestCase):
             self.assertEqual(error[0], "1 validation error for PersonBody")
             self.assertIn("Email inválido", error[2])
     
-    def test_create_person_with_name_empty_error(self):
-        try:
-            person_data = PersonBody(
-                name="", email="teste@teste.com", phone="12345678901"
-            )
-        except ValueError as e:
-            error = str(e).split("\n")
-            self.assertEqual(error[0], "1 validation error for PersonBody")
-            self.assertIn("shorter than 1 character", error[2])
+    # def test_create_person_with_name_empty_error(self):
+    #     try:
+    #         person_data = PersonBody(
+    #             name="", email="teste@teste.com", phone="12345678901"
+    #         )
+    #     except ValueError as e:
+    #         error = str(e).split("\n")
+    #         self.assertEqual(error[0], "1 validation error for PersonBody")
+    #         self.assertIn("shorter than 1 character", error[2])

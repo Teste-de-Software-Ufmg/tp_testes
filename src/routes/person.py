@@ -3,7 +3,7 @@ from fastapi.security import OAuth2AuthorizationCodeBearer
 
 from src.controllers import PersonController
 from src.models import PersonBody
-from src.services import get_current_user
+# from src.services import get_current_user
 
 router = APIRouter(tags=["persons"])
 

@@ -1,1 +1,3 @@
-from src.repositories.person import PersonRepository
+from .person import PersonRepository
+
+__all__ = ("PersonRepository")
