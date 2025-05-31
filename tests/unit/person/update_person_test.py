@@ -38,6 +38,3 @@ class TestUpdatePerson(unittest.TestCase):
 
         except HTTPException as e:
             self.assertEqual(e.__str__(), "404: Pessoa não encontrada.")
-
-        except Exception:
-            self.fail("HTTPException not raised")
