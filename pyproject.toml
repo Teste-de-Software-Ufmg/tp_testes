@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "tp-eng-software"
+name = "tp_testes"
 version = "0.1.0"
 description = ""
-authors = ["Pedro Freitas <freitaas.pedro@gmail.com>"]
+authors = ["Ana Lucia Oliveira de Paula <analucia.odp@gmail.com>"]
 readme = "README.md"
 package-mode = false
 

@@ -1,9 +1,9 @@
 # TP Testes de Software.
 
 ## Nomes
-Ana Lucia Oliveira de Paula
-Gabriel Oliveira Sant'Ana
-Lucas Silva Viana  
+- Ana Lucia Oliveira de Paula
+- Gabriel Oliveira Sant'Ana
+- Lucas Silva Viana  
 
 ## O Sistema
 O sistema desenvolvido é uma API para organização de tarefas, nele é possível cadastrar tarefas e pessoas podendo editar elas para mudar seu status, similar a um trello.

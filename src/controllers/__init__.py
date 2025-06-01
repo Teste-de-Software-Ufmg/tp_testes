@@ -1,1 +1,3 @@
-from src.controllers.person import PersonController
+from .person import PersonController
+
+__all__ = ("PersonController")

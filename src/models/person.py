@@ -7,6 +7,8 @@ class PersonBody(BaseModel):
     
     @field_validator('email')
     def validate_email(cls, value):
+        if not value.strip(): 
+            raise ValueError("Email não pode ser vazio.")
         if "@" not in value:
             raise ValueError("Email inválido.")
         if "." not in value:
@@ -15,8 +17,16 @@ class PersonBody(BaseModel):
     
     @field_validator('phone')
     def validate_phone(cls, value):
+        if not value.strip(): 
+            raise ValueError("Telefone não pode ser vazio.")
         if len(value) != 11:
             raise ValueError("Telefone inválido.")
         if not value.isdigit():
             raise ValueError("Telefone inválido.")
+        return value
+    
+    @field_validator('name')
+    def validate_name(cls, value):
+        if not value.strip(): 
+            raise ValueError("Nome não pode ser vazio.")
         return value

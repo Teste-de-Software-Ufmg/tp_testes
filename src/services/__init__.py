@@ -1,1 +1,3 @@
-from src.services.person import PersonService
+from .person import PersonService
+
+__all__ = ("PersonService")
