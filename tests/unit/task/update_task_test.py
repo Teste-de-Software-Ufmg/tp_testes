@@ -1,6 +1,7 @@
 import unittest
 from fastapi import HTTPException
 from src.controllers import TaskController
+from src.repositories import TaskRepository
 from src.models import TaskBody
 from src.database import Base, engine
 from datetime import date
@@ -51,5 +52,12 @@ class TestUpdateTask(unittest.TestCase):
         except HTTPException as e:
             self.assertEqual(e.__str__(), "404: Tarefa não encontrada.")
         
-        except Exception:
-            self.fail("HTTPException not raised")
+    def test_with_not_inserted_id(self):
+        task_data = TaskBody(
+            title="New Task", description="test",
+            status="pending", priority="high", deadline=str(date.today()),
+            id_person=0
+        )
+
+        res = TaskRepository().update(1000, task_data)
+        self.assertIsNone(res)

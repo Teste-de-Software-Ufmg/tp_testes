@@ -19,8 +19,17 @@ class TestCreatePerson(unittest.TestCase):
 
     def test_create_person_with_phone_error(self):
         try:
-            person_data = PersonBody(
+            _ = PersonBody(
                 name="New Person", email="teste@teste.com", phone="fd")
+        except ValueError as e:
+            error = str(e).split("\n")
+            self.assertEqual(error[0], "1 validation error for PersonBody")
+            self.assertIn("Telefone inválido", error[2])
+    
+    def test_create_person_with_invalid_phone_value_error(self):
+        try:
+            _ = PersonBody(
+                name="New Person", email="teste@teste.com", phone="fffffffffff")
         except ValueError as e:
             error = str(e).split("\n")
             self.assertEqual(error[0], "1 validation error for PersonBody")
@@ -28,17 +37,28 @@ class TestCreatePerson(unittest.TestCase):
 
     def test_create_person_with_email_error(self):
         try:
-            person_data = PersonBody(
-                name="New Person", email="teste.com", phone="12345678901"
+            _ = PersonBody(
+                name="New Person", email="teste", phone="12345678901"
             )
         except ValueError as e:
             error = str(e).split("\n")
             self.assertEqual(error[0], "1 validation error for PersonBody")
             self.assertIn("Email inválido", error[2])
     
+    def test_create_person_with_email_sintax_error(self):
+        try:
+            _ = PersonBody(
+                name="New Person", email="teste@", phone="12345678901"
+            )
+        except ValueError as e:
+            error = str(e).split("\n")
+            self.assertEqual(error[0], "1 validation error for PersonBody")
+            self.assertIn("Email inválido", error[2])
+
+    
     def test_create_person_with_name_empty_error(self):
         try:
-            person_data = PersonBody(
+            _ = PersonBody(
                 name=" ", email="teste@teste.com", phone="12345678901"
             )
         except ValueError as e:
@@ -48,7 +68,7 @@ class TestCreatePerson(unittest.TestCase):
     
     def test_create_person_with_email_empty_error(self):
         try:
-            person_data = PersonBody(
+            _ = PersonBody(
                 name="New Person", email=" ", phone="12345678901"
             )
         except ValueError as e:
@@ -58,7 +78,7 @@ class TestCreatePerson(unittest.TestCase):
     
     def test_create_person_with_phone_empty_error(self):
         try:
-            person_data = PersonBody(
+            _ = PersonBody(
                 name="New Person", email="teste@teste.com", phone=" "
             )
         except ValueError as e:

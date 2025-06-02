@@ -1,6 +1,7 @@
 import unittest
 from fastapi import HTTPException
 from src.controllers import PersonController
+from src.repositories import PersonRepository
 from src.models import PersonBody
 from src.database import Base, engine
 
@@ -32,9 +33,15 @@ class TestUpdatePerson(unittest.TestCase):
 
     def test_update_person_with_invalid_id(self):
         try:
-            result = PersonController().update(-10, PersonBody(
+            _ = PersonController().update(-10, PersonBody(
                 name="New Person 1", email="teste@gmail.com", phone="12345678901"
             ))
 
         except HTTPException as e:
             self.assertEqual(e.__str__(), "404: Pessoa não encontrada.")
+            
+    def test_update_person_with_not_found_id(self):
+        res = PersonRepository().update(0, PersonBody(
+            name="New Person 1", email="teste@gmail.com", phone="12345678901"
+        ))
+        self.assertIsNone(res)
