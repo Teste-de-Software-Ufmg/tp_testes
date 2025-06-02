@@ -1,4 +1,5 @@
-from src.routes.person import router as person
-from src.routes.oauth import router as oauth_router
+from .person import router as person
+from .tasks import router as tasks
+from .oauth import router as oauth
 
-__all__ = ("person", "oauth_router")
+__all__ = ("person", "tasks", "oauth")
