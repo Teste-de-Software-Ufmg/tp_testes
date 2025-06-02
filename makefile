@@ -11,7 +11,7 @@ run:
 .PHONY: tests
 
 tests:
-	poetry run python -m unittest
+	poetry run python -m unittest tests.unit
 
 cover:
 	poetry run coverage run -m unittest
