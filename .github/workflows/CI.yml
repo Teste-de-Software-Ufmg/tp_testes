@@ -31,10 +31,17 @@ jobs:
         run: |
           poetry install
 
-      - name: Run tests and generate coverage
+      - name: Run unit tests and generate coverage
         run: |
           poetry run coverage run -m unittest discover -s tests
           poetry run coverage xml
+        
+      - name: Run Integration tests
+        run: |
+          poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload --env-file .env
+          sleep 1
+          poetry run python -m unittest tests.integration
+          pkill -f "uvicorn main:app"
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4

@@ -13,6 +13,12 @@ run:
 tests:
 	poetry run python -m unittest tests.unit
 
+integration:
+	make run & \
+	sleep 1 && \
+	poetry run python -m unittest tests.integration && \
+	pkill -f "uvicorn main:app"
+
 cover:
 	poetry run coverage run -m unittest tests.unit
 	poetry run coverage report
