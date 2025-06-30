@@ -37,11 +37,22 @@ jobs:
           poetry run coverage xml
         
       - name: Run Integration tests
+        shell: bash
+        if: runner.os != 'Windows'
         run: |
-          poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload --env-file .env  & \
+          poetry run uvicorn main:app --host 0.0.0.0 --port 8000 --reload --env-file .env & \
           sleep 1 && \
           poetry run python -m unittest tests.integration && \
           pkill -f "uvicorn main:app"
+
+      - name: Run Integration tests (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          Start-Process -NoNewWindow -FilePath poetry -ArgumentList 'run','uvicorn','main:app','--host','0.0.0.0','--port','8000','--reload','--env-file','.env'
+          Start-Sleep -Seconds 2
+          poetry run python -m unittest tests.integration
+          Get-Process -Name "python" | Where-Object { $_.Path -like "*uvicorn*" } | Stop-Process -Force
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
