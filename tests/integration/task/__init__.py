@@ -1,5 +1,7 @@
 from .create_task_integration_test import TestCreateTaskIntegration
+from .person_integration_test import TestPersonEndpointsIntegration
 
 __all__ = [
-    "TestCreateTaskIntegration"
+    "TestCreateTaskIntegration",
+    "TestPersonEndpointsIntegration"
 ]
